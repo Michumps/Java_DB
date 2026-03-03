@@ -1,2 +1,5 @@
-## ignore java.class files
+# ignore java.class files
 *.class
+
+# ignore data.db file
+data.db
