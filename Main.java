@@ -24,8 +24,11 @@ public class Main {
 
 			switch(tokens[0]) {
 				case "SET":
-					linkedList.setValue(tokens[1], tokens[2]);
-					storageManager.append("SET;" + tokens[1] + ';' + tokens[2]);
+
+					if (tokens.length == 3 && tokens[1] != null && tokens[2] != null) {
+						linkedList.setValue(tokens[1], tokens[2]);
+						storageManager.append("SET;" + tokens[1] + ';' + tokens[2]);
+					}
 					break;
 
 				case "GET":
