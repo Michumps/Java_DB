@@ -32,7 +32,7 @@ public class LinkedList {
 		Node travNode = head;
 
 		while (travNode != null) {
-			if (travNode.key == key) {
+			if (travNode.key.equals(key)) {
 				return travNode.value;
 			}
 
