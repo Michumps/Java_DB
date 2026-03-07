@@ -16,6 +16,7 @@ public class StorageManager {
 			dataPath,
 			StandardOpenOption.CREATE, // checks if file is already created, if not, creates it
 			StandardOpenOption.APPEND))	{
+				myWriter.newLine();
 				myWriter.write(log);
 				System.out.println("Successfully wrote log to data.db");
 		} catch (IOException e) {
