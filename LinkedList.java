@@ -39,7 +39,8 @@ public class LinkedList {
 			travNode = travNode.next;
 		}
 
-		return "No value for that key found";
+		// Return empty string for nonexistent key
+		return "";
 	}
 
 	public void printList() {
@@ -59,7 +60,6 @@ public class LinkedList {
 
 	public void setValue(String key, String value) {
 		if (head == null) {
-			System.out.println("No List created yet, creating list with KEY: " + key + " VALUE: " + value);
 			addNode(key, value);
 			return;
 		}
@@ -84,13 +84,19 @@ public class LinkedList {
 	public void initializeList(List<String> inputList) {
 
 		for (String line : inputList) {
+			// Skip empty lines
+			if (line == null || line.trim().isEmpty()) {
+				continue;
+			}
 
 			String[] tokens = line.split(";");
 
-			setValue(tokens[1], tokens[2]);
+			// Ensure that we have enough tokens before accessing them
+			if (tokens.length >= 3 && tokens[0].equals("SET")) {
+				setValue(tokens[1], tokens[2]);
+			}
 		}
 
-		System.out.println("Successfully initialized DB from file");
 	}
 
 	LinkedList() {
