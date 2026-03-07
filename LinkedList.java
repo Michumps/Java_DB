@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class LinkedList {
 
 	private Node head;
@@ -29,7 +31,7 @@ public class LinkedList {
 	public String getValue(String key) {
 		Node travNode = head;
 
-		while (travNode.next != null) {
+		while (travNode != null) {
 			if (travNode.key == key) {
 				return travNode.value;
 			}
@@ -43,6 +45,11 @@ public class LinkedList {
 	public void printList() {
 		Node travNode = head;
 
+		if (travNode == null) {
+			System.out.println("No List to print!");
+			return;
+		}
+
 		while (travNode != null) {
 			System.out.println("Key: " + travNode.key + " Value: " + travNode.value);
 
@@ -52,7 +59,8 @@ public class LinkedList {
 
 	public void setValue(String key, String value) {
 		if (head == null) {
-			System.out.println("No list created yet!");
+			System.out.println("No List created yet, creating list with KEY: " + key + " VALUE: " + value);
+			addNode(key, value);
 			return;
 		}
 
@@ -60,14 +68,29 @@ public class LinkedList {
 
 		// traverses the list to check if key already exists, if so overwrites node
 		while (travNode != null) {
-			if (travNode.key == key) {
+			if (travNode.key.equals(key)) {
 				travNode.value = value;
 				return;
 			}
+
+			travNode = travNode.next;
+
 		}
 
 		// if not adds new node with key-value pair
 		addNode(key, value);
+	}
+
+	public void initializeList(List<String> inputList) {
+
+		for (String line : inputList) {
+
+			String[] tokens = line.split(";");
+
+			setValue(tokens[1], tokens[2]);
+		}
+
+		System.out.println("Successfully initialized DB from file");
 	}
 
 	LinkedList() {
