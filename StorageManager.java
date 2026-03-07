@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class StorageManager {
 
@@ -21,6 +22,21 @@ public class StorageManager {
 			System.out.println("Error writing to file");
 			e.printStackTrace();
 		}
+	}
+
+	public List<String> readFromFile() {
+
+		try {
+			List<String> myList = Files.readAllLines(dataPath);
+			return myList;
+		} catch (IOException e) {
+			System.out.println("An error has occured: ");
+			e.printStackTrace();
+			// Empty immutable list if there is an IOException
+			List<String> errorList = List.of();
+			return errorList;
+		}
+		
 	}
 
 	StorageManager() {
